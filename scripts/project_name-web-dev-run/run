@@ -1,0 +1,27 @@
+#!/bin/bash
+SVC_LOG="/mnt1/logs/svc.log"
+
+date >> ${SVC_LOG}
+echo '{{ project_name|lower }} web start' >> ${SVC_LOG}
+
+cd /opt/mos/codebase/{{ project_name|lower }}
+
+export LANG="en_US.utf8"
+export LC_ALL="en_US.UTF-8"
+export LC_LANG="en_US.UTF-8"
+export DJANGO_SETTINGS_MODULE={{ project_name|lower }}.settings.web_dev
+
+touch /mnt1/logs/{{ project_name|lower }}-web.log
+chown mos.mos /mnt1/logs/{{ project_name|lower }}-web.log
+
+exec setuidgid mos uwsgi \
+    --http-socket 127.0.0.1:6000 \
+    --module {{ project_name|lower }}.wsgi \
+    --master \
+    --die-on-term \
+    --max-requests 500 \
+    --listen 128 \
+    --logto /mnt1/logs/uwsgi-web.log \
+    --harakiri 1000 \
+    --harakiri-verbose \
+    --processes 8 >> /mnt1/logs/{{ project_name|lower }}-web.log 2>&1

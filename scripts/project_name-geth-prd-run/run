@@ -1,0 +1,11 @@
+#!/bin/bash
+SVC_LOG="/mnt1/logs/svc.log"
+
+date >> ${SVC_LOG}
+echo '{{ project_name|lower }}-geth start' >> ${SVC_LOG}
+
+export LANG="en_US.utf8"
+export LC_ALL="en_US.UTF-8"
+export LC_LANG="en_US.UTF-8"
+
+exec setuidgid mos geth --datadir "/data/ethereum/" --rpc --cache=4096 --fast >> /mnt1/logs/geth.log 2>&1
