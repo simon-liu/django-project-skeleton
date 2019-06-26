@@ -10,7 +10,7 @@ export DJANGO_SETTINGS_MODULE={{ project_name|lower }}.settings.ut
 if [ -z "$1" ]
 then
     coverage run --source='.' manage.py test \
-        apps.main.tests_contract
+        apps.main.tests_main
 else
     coverage run --source='.' manage.py test $1
 fi
