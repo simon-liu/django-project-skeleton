@@ -2,7 +2,7 @@
 
 flake8 --max-line-length=200 {{ project_name|lower }} \
     --ignore W391 \
-    --per-file-ignores '{{ project_name|lower }}/settings/*.py:F405,F403'
+    --per-file-ignores '{{ project_name|lower }}/settings/*.py:F405,F403,F401'
 
 flake8 --max-line-length=100 apps \
     --ignore W391 \
