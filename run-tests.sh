@@ -1,8 +1,10 @@
 #!/bin/bash
 
-flake8 --max-line-length=200 {{ project_name|lower }}
+flake8 --max-line-length=200 {{ project_name|lower }} \
+    --per-file-ignores '{{ project_name|lower }}/settings/*.py:F405,F403'
 
-flake8 --max-line-length=100 apps --exclude apps/*/migrations/*.py
+flake8 --max-line-length=100 apps \
+    --exclude apps/*/migrations/*.py
 
 export DJANGO_SETTINGS_MODULE={{ project_name|lower }}.settings.ut
 

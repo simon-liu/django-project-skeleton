@@ -1,5 +1,5 @@
 # noinspection PyUnresolvedReferences
-from .defaults import *  # noqa
+from .defaults import *
 
 DATABASES = {
     'default': {

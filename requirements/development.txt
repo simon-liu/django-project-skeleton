@@ -13,6 +13,6 @@ drf-yasg==1.10.2
 mock==2.0.0
 celery==4.1.0
 lxml==4.2.1
+flake8>=3.7.7
 coverage
-flake8
 git+https://github.com/redis/hiredis-py.git@2636dbaf32377ac33543f037abe49590e0d2bc5b
